@@ -78,3 +78,34 @@ def hello():
 
 - [[https://example.com][Example Link]]
 - Internal link to [[*Welcome to My Blog][another post]]
+
+** TODO Test  :test:blog:emacs:
+:PROPERTIES:
+:EXPORT_FILE_NAME: test
+:EXPORT_DATE: 2026-01-31
+:EXPORT_HUGO_DRAFT: true
+:EXPORT_DESCRIPTION: Testing my new Hugo blog setup
+:END:
+
+I'm testing the functionality of my new blog with Doom Emacs. There are a few things I would like to test.
+
+*** Tests
+
+First is code blocks:
+
+#+begin_src bash :eval never-export
+echo "This is a test for the blog"
+#+end_src
+
+Second is bullet lists:
+
+- Test 1
+- Test 2
+- Test 3
+
+Third is numbered lists:
+
+1. Test 1
+2. Test 2
+3. Test 3
+
