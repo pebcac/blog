@@ -45,7 +45,8 @@ becomes a separate blog post when exported. The workflow is:
 
 Stay tuned for more posts on Emacs, DevOps, and other technical topics.
 
-** TODO Template Post                                           :template:
+** DONE Template Post :template:
+CLOSED: [2026-01-31 Sat 18:48]
 :PROPERTIES:
 :EXPORT_FILE_NAME: template-post
 :EXPORT_DATE: 2026-01-31
@@ -79,7 +80,8 @@ def hello():
 - [[https://example.com][Example Link]]
 - Internal link to [[*Welcome to My Blog][another post]]
 
-** TODO Test  :test:blog:emacs:
+** DONE Test :test:blog:emacs:
+CLOSED: [2026-01-31 Sat 18:48]
 :PROPERTIES:
 :EXPORT_FILE_NAME: test
 :EXPORT_DATE: 2026-01-31
