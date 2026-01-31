@@ -1,0 +1,24 @@
+services:
+  webhook:
+    image: almir/webhook
+    container_name: hugo-webhook
+    restart: unless-stopped
+    volumes:
+      - ./hooks.json:/etc/webhook/hooks.json:ro
+      - ./scripts:/scripts:ro
+      - ../:/site
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -verbose -hooks=/etc/webhook/hooks.json -hotreload
+    ports:
+      - "9000:9000"
+
+  web:
+    image: nginx:alpine
+    container_name: hugo-web
+    restart: unless-stopped
+    volumes:
+      - ../public:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - webhook
