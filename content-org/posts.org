@@ -1,0 +1,80 @@
+#+HUGO_BASE_DIR: ~/org/blog/
+#+HUGO_SECTION: posts
+#+AUTHOR: Preston Davis
+
+* Posts
+:PROPERTIES:
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :toc true
+:END:
+
+** DONE Welcome to My Blog                                      :meta:hugo:
+:PROPERTIES:
+:EXPORT_FILE_NAME: welcome
+:EXPORT_DATE: 2026-01-31
+:EXPORT_DESCRIPTION: First post on my new Hugo-powered blog
+:END:
+
+Welcome to my new blog! This site is built with:
+
+- [[https://gohugo.io/][Hugo]] - A fast static site generator
+- [[https://ox-hugo.scripter.co/][ox-hugo]] - Org mode to Hugo exporter for Emacs
+- [[https://www.gnu.org/software/emacs/][Doom Emacs]] - My preferred development environment
+
+*** Why Hugo?
+
+I previously used Ghost for blogging, but I wanted something that:
+
+1. Integrates with my Org-mode workflow in Emacs
+2. Allows writing in plain text (version controlled)
+3. Deploys as a static site (fast and secure)
+4. Doesn't require a database
+
+Hugo checks all these boxes. Combined with ox-hugo, I can write posts in Org mode
+and export them directly to Hugo-compatible Markdown.
+
+*** The Setup
+
+Posts are written in a single =posts.org= file using Org subtrees. Each subtree
+becomes a separate blog post when exported. The workflow is:
+
+1. Write post as Org subtree
+2. Export with =C-c C-e H H= (or =SPC o B e=)
+3. Commit and push to GitHub
+4. Webhook triggers rebuild on server
+5. Post is live!
+
+Stay tuned for more posts on Emacs, DevOps, and other technical topics.
+
+** TODO Template Post                                           :template:
+:PROPERTIES:
+:EXPORT_FILE_NAME: template-post
+:EXPORT_DATE: 2026-01-31
+:EXPORT_HUGO_DRAFT: true
+:EXPORT_DESCRIPTION: A template for new posts
+:END:
+
+This is a template for creating new posts. Copy this subtree and modify.
+
+*** Section 1
+
+Content here...
+
+*** Section 2
+
+More content...
+
+**** Subsection
+
+Even more content...
+
+*** Code Example
+
+#+begin_src python
+def hello():
+    print("Hello, World!")
+#+end_src
+
+*** Links and References
+
+- [[https://example.com][Example Link]]
+- Internal link to [[*Welcome to My Blog][another post]]

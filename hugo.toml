@@ -1,0 +1,73 @@
+baseURL = "https://blog.pebcac.org/"
+languageCode = "en-us"
+title = "Pebcac Blog"
+theme = "hugo-blog-awesome"
+
+# Enable emojis
+enableEmoji = true
+
+# Ignore additional script loading errors (theme default)
+ignoreErrors = ["additional-script-loading-error"]
+
+# Site parameters
+[params]
+  sitename = "Pebcac Blog"
+  description = "Preston's technical blog - Emacs, DevOps, and more"
+  defaultColor = "auto"
+  mainSections = ["posts"]
+  toc = true
+  tocOpen = false
+  goToTop = true
+  dateFormat = "January 2, 2006"
+  rssFeedDescription = "summary"
+
+# Author information (required by theme)
+[params.author]
+  name = "Preston Davis"
+  intro = "Pebcac Blog"
+  description = "Technical blog covering Emacs, DevOps, Kubernetes, and more"
+  # avatar = "avatar.jpg"  # Uncomment and add image to assets/ folder
+
+# Social icons
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/pebcac"
+
+[[params.socialIcons]]
+  name = "Rss"
+  url = "/index.xml"
+
+# Enable RSS
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+# Goldmark markdown settings
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
+
+# Menu configuration
+[menu]
+  [[menu.main]]
+    pageRef = "/"
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    pageRef = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 20
+  [[menu.main]]
+    pageRef = "about"
+    name = "About"
+    url = "/about/"
+    weight = 30

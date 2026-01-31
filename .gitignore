@@ -1,0 +1,23 @@
+# Hugo generated files
+public/
+resources/_gen/
+
+# Hugo cache
+.hugo_build.lock
+
+# Editor files
+*~
+\#*\#
+.#*
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Local development
+.env
+.envrc
+
+# Node (if using Hugo modules)
+node_modules/
