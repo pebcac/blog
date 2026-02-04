@@ -4,6 +4,7 @@ author = ["Preston Davis"]
 description = "Testing my new Hugo blog setup"
 date = 2026-01-31T18:48:00-05:00
 tags = ["test", "blog", "emacs"]
+categories = ["Emacs"]
 draft = false
 toc = true
 +++

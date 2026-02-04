@@ -1,182 +1,75 @@
-#+HUGO_BASE_DIR: ~/org/blog/
-#+HUGO_SECTION: posts
-#+AUTHOR: Preston Davis
-
-* Posts
-:PROPERTIES:
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :toc true
-:END:
-
-** DONE Welcome to My Blog                                      :meta:hugo:
-:PROPERTIES:
-:EXPORT_FILE_NAME: welcome
-:EXPORT_DATE: 2026-01-31
-:EXPORT_DESCRIPTION: First post on my new Hugo-powered blog
-:EXPORT_HUGO_CATEGORIES: Meta
-:END:
-
-Welcome to my new blog! This site is built with:
-
-- [[https://gohugo.io/][Hugo]] - A fast static site generator
-- [[https://ox-hugo.scripter.co/][ox-hugo]] - Org mode to Hugo exporter for Emacs
-- [[https://www.gnu.org/software/emacs/][Doom Emacs]] - My preferred development environment
-
-*** Why Hugo?
-
-I previously used Ghost for blogging, but I wanted something that:
-
-1. Integrates with my Org-mode workflow in Emacs
-2. Allows writing in plain text (version controlled)
-3. Deploys as a static site (fast and secure)
-4. Doesn't require a database
-
-Hugo checks all these boxes. Combined with ox-hugo, I can write posts in Org mode
-and export them directly to Hugo-compatible Markdown.
-
-*** The Setup
-
-Posts are written in a single =posts.org= file using Org subtrees. Each subtree
-becomes a separate blog post when exported. The workflow is:
-
-1. Write post as Org subtree
-2. Export with =C-c C-e H H= (or =SPC o B e=)
-3. Commit and push to GitHub
-4. Webhook triggers rebuild on server
-5. Post is live!
-
-Stay tuned for more posts on Emacs, DevOps, and other technical topics.
-
-** DONE Template Post :template:
-CLOSED: [2026-01-31 Sat 18:48]
-:PROPERTIES:
-:EXPORT_FILE_NAME: template-post
-:EXPORT_DATE: 2026-01-31
-:EXPORT_HUGO_DRAFT: true
-:EXPORT_DESCRIPTION: A template for new posts
-:EXPORT_HUGO_CATEGORIES: Meta
-:END:
-
-This is a template for creating new posts. Copy this subtree and modify.
-
-*** Section 1
-
-Content here...
-
-*** Section 2
-
-More content...
-
-**** Subsection
-
-Even more content...
-
-*** Code Example
-
-#+begin_src python
-def hello():
-    print("Hello, World!")
-#+end_src
-
-*** Links and References
-
-- [[https://example.com][Example Link]]
-- Internal link to [[*Welcome to My Blog][another post]]
-
-** DONE Test :test:blog:emacs:
-CLOSED: [2026-01-31 Sat 18:48]
-:PROPERTIES:
-:EXPORT_FILE_NAME: test
-:EXPORT_DATE: 2026-01-31
-:EXPORT_HUGO_DRAFT: false
-:EXPORT_DESCRIPTION: Testing my new Hugo blog setup
-:EXPORT_HUGO_CATEGORIES: Emacs
-:END:
-
-I'm testing the functionality of my new blog with Doom Emacs. There are a few things I would like to test.
-
-*** Tests
-
-First is code blocks:
-
-#+begin_src bash :eval never-export
-echo "This is a test for the blog"
-#+end_src
-
-Second is bullet lists:
-
-- Test 1
-- Test 2
-- Test 3
-
-Third is numbered lists:
-
-1. Test 1
-2. Test 2
-3. Test 3
-
-** TODO Building an MCP Server with OpenShift AI :openshift:ai:mcp:python:llm:
-:PROPERTIES:
-:EXPORT_FILE_NAME: openshift-ai-mcp-server
-:EXPORT_DATE: 2026-02-04
-:EXPORT_HUGO_DRAFT: true
-:EXPORT_DESCRIPTION: A hands-on guide to building a Model Context Protocol (MCP) server using OpenShift AI for scalable LLM deployments
-:EXPORT_HUGO_CATEGORIES: AI DevOps
-:END:
++++
+title = "Building an MCP Server with OpenShift AI"
+author = ["Preston Davis"]
+description = "A hands-on guide to building a Model Context Protocol (MCP) server using OpenShift AI for scalable LLM deployments"
+date = 2026-02-04
+tags = ["openshift", "ai", "mcp", "python", "llm"]
+categories = ["AI", "DevOps"]
+draft = true
+toc = true
++++
 
 Large Language Models are revolutionizing how we build applications, but deploying and scaling them remains a challenge. In this post, I'll walk you through building an MCP (Model Context Protocol) server using OpenShift AI—combining the power of enterprise Kubernetes with cutting-edge AI infrastructure.
 
-#+CAPTION: OpenShift AI Dashboard showing model deployments
-#+ATTR_HTML: :width 800px
-[[/images/openshift-ai-dashboard.png]]
+{{< figure src="/images/openshift-ai-dashboard.png" caption="<span class=\"figure-number\">Figure 1: </span>OpenShift AI Dashboard showing model deployments" width="800px" >}}
 
-*** What is MCP?
 
-The [[https://modelcontextprotocol.io/][Model Context Protocol (MCP)]] is an open standard developed by Anthropic that enables seamless communication between AI applications and external tools, data sources, and services. Think of it as a universal adapter for AI—allowing your LLM to interact with databases, APIs, file systems, and more through a standardized interface.
+## What is MCP? {#what-is-mcp}
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard developed by Anthropic that enables seamless communication between AI applications and external tools, data sources, and services. Think of it as a universal adapter for AI—allowing your LLM to interact with databases, APIs, file systems, and more through a standardized interface.
 
 MCP follows a client-server architecture:
-- *MCP Hosts*: Applications like Claude Desktop, IDEs, or custom apps that connect to MCP servers
-- *MCP Servers*: Lightweight services that expose specific capabilities (tools, resources, prompts)
-- *Transport Layer*: Communication via stdio (local) or HTTP with Server-Sent Events (remote)
 
-*** Why OpenShift AI?
+-   **MCP Hosts**: Applications like Claude Desktop, IDEs, or custom apps that connect to MCP servers
+-   **MCP Servers**: Lightweight services that expose specific capabilities (tools, resources, prompts)
+-   **Transport Layer**: Communication via stdio (local) or HTTP with Server-Sent Events (remote)
 
-[[https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai][OpenShift AI]] provides a robust platform for deploying and managing AI/ML workloads:
 
-- *GPU Scheduling*: Intelligent allocation of NVIDIA GPUs across workloads
-- *Model Serving*: Deploy models with KServe or custom runtimes
-- *Scalability*: Auto-scale based on inference demand
-- *Security*: Enterprise-grade access control and network policies
-- *MLOps Integration*: Pipelines, experiment tracking, and model registry
+## Why OpenShift AI? {#why-openshift-ai}
+
+[OpenShift AI](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai) provides a robust platform for deploying and managing AI/ML workloads:
+
+-   **GPU Scheduling**: Intelligent allocation of NVIDIA GPUs across workloads
+-   **Model Serving**: Deploy models with KServe or custom runtimes
+-   **Scalability**: Auto-scale based on inference demand
+-   **Security**: Enterprise-grade access control and network policies
+-   **MLOps Integration**: Pipelines, experiment tracking, and model registry
 
 Combining MCP with OpenShift AI gives you a production-ready system for exposing LLM capabilities as standardized services.
 
-*** Prerequisites
+
+## Prerequisites {#prerequisites}
 
 Before we begin, ensure you have:
 
-1. Access to an OpenShift cluster with OpenShift AI operator installed
-2. =oc= CLI configured and authenticated
-3. Python 3.11+ installed locally
-4. Basic familiarity with Kubernetes concepts
+1.  Access to an OpenShift cluster with OpenShift AI operator installed
+2.  `oc` CLI configured and authenticated
+3.  Python 3.11+ installed locally
+4.  Basic familiarity with Kubernetes concepts
 
-#+begin_src bash
+<!--listend-->
+
+```bash
 # Verify OpenShift connection
 oc whoami
 oc get pods -n redhat-ods-applications
 
 # Check OpenShift AI operator status
 oc get csv -n redhat-ods-operator | grep rhods
-#+end_src
+```
 
-*** Project Architecture
+
+## Project Architecture {#project-architecture}
 
 Our MCP server will provide three key capabilities:
 
-1. *Tools*: Execute functions like querying a knowledge base or running calculations
-2. *Resources*: Expose data from OpenShift (pods, deployments, logs)
-3. *Prompts*: Pre-defined prompt templates for common tasks
+1.  **Tools**: Execute functions like querying a knowledge base or running calculations
+2.  **Resources**: Expose data from OpenShift (pods, deployments, logs)
+3.  **Prompts**: Pre-defined prompt templates for common tasks
 
-#+begin_example
+<!--listend-->
+
+```text
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
 │   MCP Client    │────▶│   MCP Server    │────▶│  OpenShift AI   │
 │ (Claude Desktop)│     │   (Python)      │     │  (LLM Runtime)  │
@@ -187,36 +80,38 @@ Our MCP server will provide three key capabilities:
                         │   OpenShift     │
                         │   Resources     │
                         └─────────────────┘
-#+end_example
+```
 
-*** Step 1: Setting Up the OpenShift AI Project
+
+## Step 1: Setting Up the OpenShift AI Project {#step-1-setting-up-the-openshift-ai-project}
 
 First, create a new project for our MCP server deployment:
 
-#+begin_src bash
+```bash
 # Create project
 oc new-project mcp-server-demo
 
 # Add necessary permissions for OpenShift AI
 oc adm policy add-role-to-user view -z default -n mcp-server-demo
-#+end_src
+```
 
-*** Step 2: Building the MCP Server
+
+## Step 2: Building the MCP Server {#step-2-building-the-mcp-server}
 
 Create a new Python project with the MCP SDK:
 
-#+begin_src bash
+```bash
 # Create project directory
 mkdir openshift-mcp-server && cd openshift-mcp-server
 
 # Initialize with uv (recommended) or pip
 uv init
 uv add "mcp[cli]" httpx kubernetes openshift-client
-#+end_src
+```
 
-Now let's create the core MCP server. Create =server.py=:
+Now let's create the core MCP server. Create `server.py`:
 
-#+begin_src python
+```python
 #!/usr/bin/env python3
 """OpenShift AI MCP Server - Expose OpenShift resources to LLMs."""
 
@@ -585,13 +480,14 @@ async def main():
 if __name__ == "__main__":
     import asyncio
     asyncio.run(main())
-#+end_src
+```
 
-*** Step 3: Creating the Container Image
 
-Create a =Containerfile= for deployment:
+## Step 3: Creating the Container Image {#step-3-creating-the-container-image}
 
-#+begin_src dockerfile
+Create a `Containerfile` for deployment:
+
+```dockerfile
 FROM registry.access.redhat.com/ubi9/python-311:latest
 
 WORKDIR /app
@@ -608,23 +504,24 @@ ENV PYTHONUNBUFFERED=1
 
 # Run the MCP server
 CMD ["python", "server.py"]
-#+end_src
+```
 
 Build and push the image:
 
-#+begin_src bash
+```bash
 # Build the container image
 podman build -t quay.io/yourusername/openshift-mcp-server:latest .
 
 # Push to registry
 podman push quay.io/yourusername/openshift-mcp-server:latest
-#+end_src
+```
 
-*** Step 4: Deploying to OpenShift
 
-Create the Kubernetes manifests. First, =deployment.yaml=:
+## Step 4: Deploying to OpenShift {#step-4-deploying-to-openshift}
 
-#+begin_src yaml
+Create the Kubernetes manifests. First, `deployment.yaml`:
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -671,11 +568,11 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
-#+end_src
+```
 
-Create a =service-account.yaml= with appropriate permissions:
+Create a `service-account.yaml` with appropriate permissions:
 
-#+begin_src yaml
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -709,11 +606,11 @@ roleRef:
   kind: ClusterRole
   name: mcp-server-reader
   apiGroup: rbac.authorization.k8s.io
-#+end_src
+```
 
-And expose it with a =service.yaml=:
+And expose it with a `service.yaml`:
 
-#+begin_src yaml
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -740,11 +637,11 @@ spec:
     targetPort: http
   tls:
     termination: edge
-#+end_src
+```
 
 Apply the manifests:
 
-#+begin_src bash
+```bash
 oc apply -f service-account.yaml
 oc apply -f deployment.yaml
 oc apply -f service.yaml
@@ -752,17 +649,16 @@ oc apply -f service.yaml
 # Verify deployment
 oc get pods -n mcp-server-demo
 oc get route mcp-server -n mcp-server-demo
-#+end_src
+```
 
-#+CAPTION: MCP Server pod running in OpenShift
-#+ATTR_HTML: :width 800px
-[[/images/mcp-server-pod-running.png]]
+{{< figure src="/images/mcp-server-pod-running.png" caption="<span class=\"figure-number\">Figure 2: </span>MCP Server pod running in OpenShift" width="800px" >}}
 
-*** Step 5: Configuring Claude Desktop
 
-To use your MCP server with Claude Desktop, update your configuration at =~/.config/claude/claude_desktop_config.json=:
+## Step 5: Configuring Claude Desktop {#step-5-configuring-claude-desktop}
 
-#+begin_src json
+To use your MCP server with Claude Desktop, update your configuration at `~/.config/claude/claude_desktop_config.json`:
+
+```json
 {
   "mcpServers": {
     "openshift": {
@@ -774,11 +670,11 @@ To use your MCP server with Claude Desktop, update your configuration at =~/.con
     }
   }
 }
-#+end_src
+```
 
-For the remote deployment on OpenShift, you'll need to use the SSE transport. Modify =server.py= to support HTTP:
+For the remote deployment on OpenShift, you'll need to use the SSE transport. Modify `server.py` to support HTTP:
 
-#+begin_src python
+```python
 # Add to server.py for HTTP transport support
 from mcp.server.sse import SseServerTransport
 from starlette.applications import Starlette
@@ -803,13 +699,14 @@ app = Starlette(
         Route("/messages", endpoint=sse.handle_post_message, methods=["POST"]),
     ]
 )
-#+end_src
+```
 
-*** Step 6: Testing the Integration
+
+## Step 6: Testing the Integration {#step-6-testing-the-integration}
 
 With everything deployed, let's test the integration. In Claude Desktop or your MCP client:
 
-#+begin_example
+```text
 User: What pods are running in the mcp-server-demo namespace?
 
 Claude: I'll check the pods in that namespace using the OpenShift MCP server.
@@ -823,13 +720,14 @@ Here are the pods running in mcp-server-demo:
 | mcp-server-7d4f8b6c9-x2k4m | Running | True  |        0 |
 
 The MCP server pod is running successfully with no restarts.
-#+end_example
+```
 
-*** Deploying a Model with OpenShift AI
 
-To complete the picture, let's deploy a model that our MCP server can interact with. Create =inferenceservice.yaml=:
+## Deploying a Model with OpenShift AI {#deploying-a-model-with-openshift-ai}
 
-#+begin_src yaml
+To complete the picture, let's deploy a model that our MCP server can interact with. Create `inferenceservice.yaml`:
+
+```yaml
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
@@ -850,23 +748,24 @@ spec:
       requests:
         memory: 16Gi
         cpu: 4
-#+end_src
+```
 
-#+CAPTION: Model deployment status in OpenShift AI dashboard
-#+ATTR_HTML: :width 800px
-[[/images/model-deployment-status.png]]
+{{< figure src="/images/model-deployment-status.png" caption="<span class=\"figure-number\">Figure 3: </span>Model deployment status in OpenShift AI dashboard" width="800px" >}}
 
-*** Security Considerations
+
+## Security Considerations {#security-considerations}
 
 When deploying MCP servers in production, consider:
 
-1. *Authentication*: Implement OAuth2 or mTLS for server access
-2. *Network Policies*: Restrict which pods can communicate with the MCP server
-3. *RBAC Scoping*: Use namespace-scoped roles instead of cluster roles when possible
-4. *Secrets Management*: Use OpenShift secrets or external vault for credentials
-5. *Audit Logging*: Enable Kubernetes audit logging for compliance
+1.  **Authentication**: Implement OAuth2 or mTLS for server access
+2.  **Network Policies**: Restrict which pods can communicate with the MCP server
+3.  **RBAC Scoping**: Use namespace-scoped roles instead of cluster roles when possible
+4.  **Secrets Management**: Use OpenShift secrets or external vault for credentials
+5.  **Audit Logging**: Enable Kubernetes audit logging for compliance
 
-#+begin_src yaml
+<!--listend-->
+
+```yaml
 # Example NetworkPolicy to restrict access
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -886,36 +785,38 @@ spec:
               mcp-access: "true"
       ports:
         - port: 8080
-#+end_src
+```
 
-*** Extending the Server
+
+## Extending the Server {#extending-the-server}
 
 The beauty of MCP is its extensibility. Here are ideas for additional capabilities:
 
-- *Log Analysis*: Add a tool to fetch and analyze pod logs
-- *Metrics Integration*: Query Prometheus for cluster metrics
-- *Pipeline Triggers*: Start Tekton pipelines from the LLM
-- *Alert Responses*: Read and acknowledge alerts from AlertManager
-- *Documentation Search*: Index and search your runbooks
+-   **Log Analysis**: Add a tool to fetch and analyze pod logs
+-   **Metrics Integration**: Query Prometheus for cluster metrics
+-   **Pipeline Triggers**: Start Tekton pipelines from the LLM
+-   **Alert Responses**: Read and acknowledge alerts from AlertManager
+-   **Documentation Search**: Index and search your runbooks
 
-*** Conclusion
+
+## Conclusion {#conclusion}
 
 We've built a functional MCP server that bridges Claude's capabilities with OpenShift AI infrastructure. This pattern enables powerful workflows:
 
-- Natural language queries for cluster status
-- AI-assisted debugging of deployments
-- Automated inference requests to deployed models
-- Standardized tool interfaces for enterprise AI
+-   Natural language queries for cluster status
+-   AI-assisted debugging of deployments
+-   Automated inference requests to deployed models
+-   Standardized tool interfaces for enterprise AI
 
 The Model Context Protocol is still evolving, and the ecosystem of tools and integrations is growing rapidly. By combining MCP with OpenShift AI's robust model serving capabilities, you're well-positioned to build production-ready AI applications.
 
-*** Resources
 
-- [[https://modelcontextprotocol.io/][Model Context Protocol Documentation]]
-- [[https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/][OpenShift AI Documentation]]
-- [[https://github.com/anthropics/anthropic-cookbook/tree/main/misc/mcp][Anthropic MCP Cookbook]]
-- [[https://kserve.github.io/website/][KServe Documentation]]
-- [[https://github.com/modelcontextprotocol/python-sdk][MCP Python SDK]]
+## Resources {#resources}
 
-/The complete source code for this project is available on [[https://github.com/pebcac/openshift-mcp-server][GitHub]]./
+-   [Model Context Protocol Documentation](https://modelcontextprotocol.io/)
+-   [OpenShift AI Documentation](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/)
+-   [Anthropic MCP Cookbook](https://github.com/anthropics/anthropic-cookbook/tree/main/misc/mcp)
+-   [KServe Documentation](https://kserve.github.io/website/)
+-   [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
+_The complete source code for this project is available on [GitHub](https://github.com/pebcac/openshift-mcp-server)._

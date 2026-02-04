@@ -4,6 +4,7 @@ author = ["Preston Davis"]
 description = "First post on my new Hugo-powered blog"
 date = 2026-01-31
 tags = ["meta", "hugo"]
+categories = ["Meta"]
 draft = false
 toc = true
 +++

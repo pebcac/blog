@@ -1,46 +1,85 @@
 baseURL = "https://blog.pebcac.org/"
 languageCode = "en-us"
 title = "Pebcac Blog"
-theme = "hugo-blog-awesome"
+theme = "PaperMod"
 
 # Enable emojis
 enableEmoji = true
 
-# Ignore additional script loading errors (theme default)
-ignoreErrors = ["additional-script-loading-error"]
+# Build settings
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+# Pagination
+[pagination]
+  pagerSize = 10
+
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
 
 # Site parameters
 [params]
-  sitename = "Pebcac Blog"
+  env = "production"
+  title = "Pebcac Blog"
   description = "Preston's technical blog - Emacs, DevOps, and more"
-  defaultColor = "auto"
-  mainSections = ["posts"]
-  toc = true
-  tocOpen = false
-  goToTop = true
-  dateFormat = "January 2, 2006"
-  rssFeedDescription = "summary"
+  keywords = ["Blog", "DevOps", "Emacs", "Kubernetes", "OpenShift", "AI"]
+  author = "Preston Davis"
 
-# Author information (required by theme)
-[params.author]
-  name = "Preston Davis"
-  intro = "Pebcac Blog"
-  description = "Technical blog covering Emacs, DevOps, Kubernetes, and more"
-  # avatar = "avatar.jpg"  # Uncomment and add image to assets/ folder
+  # Theme settings
+  defaultTheme = "auto"  # dark, light, or auto
+  disableThemeToggle = false
+  showReadingTime = true
+  showShareButtons = true
+  showPostNavLinks = true
+  showBreadCrumbs = true
+  showCodeCopyButtons = true
+  showFullTextinRSS = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = true
+  tocopen = false
 
-# Social icons
-[[params.socialIcons]]
-  name = "github"
-  url = "https://github.com/pebcac"
+  # Home page settings
+  [params.homeInfoParams]
+    Title = "Pebcac Blog"
+    Content = "Technical blog covering Emacs, DevOps, Kubernetes, and more"
 
-[[params.socialIcons]]
-  name = "Rss"
-  url = "/index.xml"
+  # Profile mode (alternative to homeInfoParams)
+  # [params.profileMode]
+  #   enabled = false
+  #   title = "Preston Davis"
+  #   subtitle = "DevOps Engineer & Emacs Enthusiast"
+  #   imageUrl = ""
+  #   imageWidth = 120
+  #   imageHeight = 120
+
+  # Social icons
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/pebcac"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  # Search
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
 
 # Enable RSS
 [outputs]
-  home = ["HTML", "RSS"]
-  section = ["HTML", "RSS"]
+  home = ["HTML", "RSS", "JSON"]
 
 # Goldmark markdown settings
 [markup]
@@ -49,6 +88,11 @@ ignoreErrors = ["additional-script-loading-error"]
       unsafe = true
   [markup.highlight]
     noClasses = false
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = "monokai"
   [markup.tableOfContents]
     startLevel = 2
     endLevel = 4
@@ -57,17 +101,37 @@ ignoreErrors = ["additional-script-loading-error"]
 # Menu configuration
 [menu]
   [[menu.main]]
-    pageRef = "/"
+    identifier = "home"
     name = "Home"
     url = "/"
     weight = 10
   [[menu.main]]
-    pageRef = "posts"
+    identifier = "posts"
     name = "Posts"
     url = "/posts/"
     weight = 20
   [[menu.main]]
-    pageRef = "about"
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 30
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 40
+  [[menu.main]]
+    identifier = "archives"
+    name = "Archives"
+    url = "/archives/"
+    weight = 50
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 60
+  [[menu.main]]
+    identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 30
+    weight = 70

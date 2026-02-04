@@ -4,6 +4,7 @@ author = ["Preston Davis"]
 description = "A template for new posts"
 date = 2026-01-31T18:48:00-05:00
 tags = ["template"]
+categories = ["Meta"]
 draft = false
 toc = true
 +++

@@ -1,0 +1,12 @@
+/* Wider content for widescreen monitors - 80% width */
+
+:root {
+    --main-width: 65vw;
+    --nav-width: 65vw;
+}
+
+/* Ensure code blocks don't overflow */
+.post-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+}
